@@ -1,6 +1,5 @@
 package tictactoe;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,11 +21,6 @@ public class GameController {
 	private Button newGameButton;
 	
 	private TicTacToeGame game;
-	
-
-	public GameController() {
-		// nothing to iniitialize yet.
-	}
 	
 	@FXML
 	public void initialize() {

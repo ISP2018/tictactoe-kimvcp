@@ -9,8 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 /**
- * UI controller for the JavaFX interface to tic-tac-toe game.
- * This class handles user input events.
+ * UI controller for the JavaFX interface to tic-tac-toe game. This class
+ * handles user input events.
  */
 public class GameController {
 	@FXML
@@ -19,9 +19,9 @@ public class GameController {
 	private Pane centerPane;
 	@FXML
 	private Button newGameButton;
-	
+
 	private TicTacToeGame game;
-	
+
 	@FXML
 	public void initialize() {
 		game = new TicTacToeGame(3);
@@ -30,33 +30,38 @@ public class GameController {
 		centerPane.getChildren().add(board);
 		centerPane.prefWidthProperty().bind(board.prefWidthProperty());
 		centerPane.prefHeightProperty().bind(board.prefHeightProperty());
-		
+
 		// listen to each square for mouse click
 		EventHandler<MouseEvent> mouseClicked = this::handleCellClicked;
 		board.getChildren().forEach(child -> child.setOnMouseClicked(mouseClicked));
 		// The "New Game" button action
-		newGameButton.setOnAction( this::handleNewGameEvent );
-		
+		newGameButton.setOnAction(this::handleNewGameEvent);
+
 		// Listen to TicTacToeGame for changes in status.
-		game.gameOver().addListener( (observable,oldValue,newValue)-> updateGameStatus());
-		
+		game.gameOver().addListener((observable, oldValue, newValue) -> updateGameStatus());
+
 		updateGameStatus();
 	}
-	
+
+	/**
+	 * Update the text label followed with conditions.
+	 */
 	private void updateGameStatus() {
 		Player winner = game.winner();
-		if (winner != Player.NONE) topLabel.setText("Player "+winner+" wins!");
-		else if (game.isGameOver()) topLabel.setText("Draw. No winner.");
-		else topLabel.setText("Next Player: " + game.getNextPlayer());
-		
+		if (winner != Player.NONE)
+			topLabel.setText("Player " + winner + " wins!");
+		else if (game.isGameOver())
+			topLabel.setText("Draw. No winner.");
+		else
+			topLabel.setText("Next Player: " + game.getNextPlayer());
+
 	}
 
-	
 	/** Event handler for mouse clicks on game board. */
 	public void handleCellClicked(MouseEvent event) {
 		Object source = event.getSource();
 		if (source instanceof BoardSquare) {
-			BoardSquare cell = (BoardSquare)source;
+			BoardSquare cell = (BoardSquare) source;
 			int row = cell.getRow();
 			int col = cell.getColumn();
 			double size = cell.getHeight();
@@ -69,7 +74,7 @@ public class GameController {
 			updateGameStatus();
 		}
 	}
-	
+
 	/** Handler for button click to start a new game. */
 	public void handleNewGameEvent(ActionEvent event) {
 		game.startNewGame();

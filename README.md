@@ -1,6 +1,6 @@
 ## Tic-Tac-Toe
 
- [![Build Status](https://travis-ci.com/jbrucker/demo-ci.svg?branch=master)](https://travis-ci.com/kimvcp/tictactoe)
+ Status of last: [![Build Status]](https://travis-ci.com/kimvcp/tictactoe)
  
 ### Description
 
